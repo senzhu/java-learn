@@ -32,6 +32,13 @@ class SomeClass:
 ... prompt'''
 ```
 
+``` xml
+<properties>	
+	<shiro.version>1.2.2</shiro.version>	
+</properties>
+
+```
+
 #### LaTex 公式
 $$	x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a} $$
 
