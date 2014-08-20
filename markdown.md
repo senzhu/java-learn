@@ -39,7 +39,7 @@
 ```
 ###步骤2：修改web.xml
 
-添加shiro filter，如果你的服务器不支持servlet 3.0,把\<async-supported\>true\</async-supported\>注释掉,注意SingleSignOutFilter需要在shiroFilter之前。
+添加shiro filter，如果你的服务器不支持servlet 3.0,把`\<async-supported\>true\</async-supported\>`注释掉,注意SingleSignOutFilter需要在shiroFilter之前。
 ##### web.xml
 ``` xml
 <!—cas logout filter -->
