@@ -137,7 +137,7 @@
 </bean>
 
 ```
-
+>有单点登录情况下，登录认证是在 casserver 进行的，那么执行流程是这样的：用户从 cas server 登录成功后，跳到 cas client 的CasRealm执行默认的doGetAuthorizationInfo和doGetAuthenticationInfo，此时doGetAuthenticationInfo做的工作是把登录用户信息传递给 shiro ，保持默认即可，而对于授权的处理，可以通过MyCasRealm（继承CasRealm的自定义类）覆写doGetAuthorizationInfo进行自定义授权认证。
 
 
 
