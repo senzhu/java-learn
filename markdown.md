@@ -101,7 +101,8 @@
 <bean id="logout" class="org.apache.shiro.web.filter.authc.LogoutFilter">
   	<property name="redirectUrl" value=" https://cas.hengtiansoft.com:8443/cas/logout?service=yourApplication"/>
   	<!-- exp -->
-    <!--<property name="redirectUrl"  value="https://cas.hengtiansoft.com:8443/cas/logout?service=http://feedback.hengtiansoft.com"/> -->
+    <!--<property name="redirectUrl"  value="https://cas.hengtiansoft.com:8443/cas/logout
+    ?service=http://feedback.hengtiansoft.com"/> -->
 </bean>
 
 <bean id="casFilter" class="org.apache.shiro.cas.CasFilter">
