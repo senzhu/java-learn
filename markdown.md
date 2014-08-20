@@ -79,7 +79,9 @@
 ``` xml
 <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 	<property name="securityManager" ref="securityManager" />
-<property name="loginUrl" value="https://cas.hengtiansoft.com:8443/cas/login?service=**yourApplication/shiro-cas**" />
+<property name="loginUrl" value="https://cas.hengtiansoft.com:8443/cas/login?service=yourApplication/shiro-cas" />
+<!-- exp -->
+<!-- 		<property name="loginUrl" value="https://cas.hengtiansoft.com:8443/cas/login?service=http://feedback.hengtiansoft.com/shiro-cas"/> -->
 	<property name="unauthorizedUrl" value="/accessDenied.html"></property>
 	<property name="filterChainDefinitions">
 		<value>
@@ -97,7 +99,9 @@
 </bean>
 
 <bean id="logout" class="org.apache.shiro.web.filter.authc.LogoutFilter">
-  	<property name="redirectUrl" value=" https://cas.hengtiansoft.com:8443/cas/logout?service=**yourApplication**"/>
+  	<property name="redirectUrl" value=" https://cas.hengtiansoft.com:8443/cas/logout?service=yourApplication"/>
+  	<!-- exp -->
+<!-- 		<property name="redirectUrl" value="https://cas.hengtiansoft.com:8443/cas/logout?service=http://feedback.hengtiansoft.com"/> -->
 </bean>
 
 <bean id="casFilter" class="org.apache.shiro.cas.CasFilter">
@@ -116,7 +120,9 @@
 <bean id="casRealm" class="MyCasRealm">
 <property name="casServerUrlPrefix" value="https://cas.hengtiansoft.com:8443/cas " />
 	<!--客户端的回调地址设置，必须和上面的shiro-cas过滤器拦截的地址一致 -->
-	<property name="casService" value="**yourApplication/shiro-cas**" />
+	<property name="casService" value="yourApplication/shiro-cas" />
+			<!-- exp -->
+<!-- 		<property name="casService" value="http://feedback.hengtiansoft.com/shiro-cas" /> -->
 </bean>
 
 <!--保证实现了Shiro内部lifecycle函数的bean执行 -->
