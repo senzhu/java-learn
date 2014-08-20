@@ -143,6 +143,13 @@
 
 从[恒天CAS页面](https://cas.hengtiansoft.com:8443/cas/login)下载证书
 
+###步骤5：将证书添加到本地JVM信任库
+下载来的证书需要添加到本地JVM信任库当中。
+- **首先进入jdk1.6.0_24\jre\lib\security
+- **然后在security目录运行以下命令
+	keytool -import -alias cacerts -keystore cacerts -file D:\tiancan\cas.hengtiansoft.com.cer  
+	-- 红色标记的为步骤4下载下来的证书在你本地的路劲
+	期间需要输入密码，密码为 changeit
 
 
 
