@@ -79,7 +79,8 @@
 ``` xml
 <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 	<property name="securityManager" ref="securityManager" />
-	<property name="loginUrl" value="https://cas.hengtiansoft.com:8443/cas/login?service=yourApplication/shiro-cas" />
+	<property name="loginUrl" value="https://cas.hengtiansoft.com:8443/cas/login?
+	service=yourApplication/shiro-cas" />
 	<!-- exp -->
     <!--<property name="loginUrl" value="https://cas.hengtiansoft.com:8443/cas/login?service=http://feedback.hengtiansoft.com/shiro-cas"/> -->
 	<property name="unauthorizedUrl" value="/accessDenied.html"></property>
