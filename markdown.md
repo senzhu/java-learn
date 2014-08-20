@@ -74,8 +74,62 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 ```
+###步骤3：修改spring配置文件
+引入shiro.spring.xml
+``` xml
+<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+	<property name="securityManager" ref="securityManager" />
+<property name="loginUrl" value="https://cas.hengtiansoft.com:8443/cas/login?service=yourApplication/shiro-cas" />
+	<property name="unauthorizedUrl" value="/accessDenied.html"></property>
+	<property name="filterChainDefinitions">
+		<value>
+			/shiro-cas=casFilter
+			/logout=logout  --logout
+			/index.html=authc
+			/**=authc
+		</value>
+	</property>
+	<property name="filters">
+		<util:map>
+			<entry key="casFilter" value-ref="casFilter" />
+		</util:map>
+	</property>
+</bean>
+
+<bean id="logout" class="org.apache.shiro.web.filter.authc.LogoutFilter">
+  	<property name="redirectUrl" value=" https://cas.hengtiansoft.com:8443/cas/logout?service= yourApplication"/>
+</bean>
+
+<bean id="casFilter" class="org.apache.shiro.cas.CasFilter">
+	<property name="failureUrl" value="error.jsp"></property>
+</bean>
+
+<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+	<property name="realm" ref="casRealm" />
+	<property name="cacheManager" ref="cacheManager" />
+</bean>
+
+	<!--用户授权/认证信息Cache, 采用EhCache 缓存 -->
+<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager" />
 
 
+<bean id="casRealm" class="MyCasRealm">
+<property name="casServerUrlPrefix" value="https://cas.hengtiansoft.com:8443/cas " />
+	<!--客户端的回调地址设置，必须和上面的shiro-cas过滤器拦截的地址一致 -->
+	<property name="casService" value=" yourApplication/shiro-cas" />
+</bean>
+
+<!--保证实现了Shiro内部lifecycle函数的bean执行 -->
+<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+	depends-on="lifecycleBeanPostProcessor">
+	<property name="proxyTargetClass" value="true" />
+</bean> 
+<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+<property name="securityManager" ref="securityManager" />
+</bean>
+```
 
 
 
