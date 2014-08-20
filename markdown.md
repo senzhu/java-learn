@@ -151,6 +151,24 @@
 	-- 高亮部分为步骤4下载下来的证书在你本地的路劲
 	期间需要输入密码，密码为 `changeit`
 
+###步骤6：获取CAS返回的信息
+在java代码中获取 staffId ,staffName
+``` java
+
+List list = SecurityUtils.getSubject().getPrincipals().asList();
+Map<String, Object> info = (Map<String, Object>)list.get(1);
+if(info != null){
+    String staffId = info.get("name").toString();
+    List  value = (List)info.get("value");
+    String staffId = (String)value.get(0);
+    String staffName = (String)value.get(1);
+}
+
+`or`
+
+String staffName = SecurityUtils.getSubject().getPrincipal().toString();
+
+```
 
 
 
