@@ -75,7 +75,7 @@
 	</filter-mapping>
 ```
 ###步骤3：修改spring配置文件
-引入shiro.spring.xml
+引入shiro-cas.spring.xml
 ``` xml
 <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 	<property name="securityManager" ref="securityManager" />
